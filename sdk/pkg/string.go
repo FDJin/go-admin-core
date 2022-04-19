@@ -3,6 +3,7 @@ package pkg
 import (
 	"encoding/json"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -24,4 +25,17 @@ func StructToJsonStr(e interface{}) (string, error) {
 	} else {
 		return "", err
 	}
+}
+
+func GetDateAfterMonths(num int) string {
+	currentTime := time.Now().AddDate(0, num, 0)
+	return currentTime.String()
+}
+
+func DataTimeToDate(e string) string{
+	if find := strings.Contains(e, "T00"); find{
+		e = e[:10]
+	}
+
+	return e
 }
